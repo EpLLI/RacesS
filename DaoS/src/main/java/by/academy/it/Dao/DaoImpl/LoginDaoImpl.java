@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.academy.it.Dao.Dao.UserDao;
-import by.academy.it.Heberneit.HibernateUtil;
+import by.academy.it.Hiberneit.HibernateUtil;
 import by.academy.it.pojos.Race;
 import by.academy.it.pojos.User;
 

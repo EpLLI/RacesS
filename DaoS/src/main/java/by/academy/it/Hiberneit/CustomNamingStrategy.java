@@ -1,4 +1,4 @@
-package by.academy.it.Heberneit;
+package by.academy.it.Hiberneit;
 
 import org.hibernate.cfg.DefaultNamingStrategy;
 

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 
 import by.academy.it.Dao.Dao.Connect;
 import by.academy.it.Dao.Dao.DaoBets;
-import by.academy.it.Heberneit.HibernateUtil;
+import by.academy.it.Hiberneit.HibernateUtil;
 import by.academy.it.pojos.Bets;
 import by.academy.it.pojos.Coefficient;
 import by.academy.it.pojos.Race;
