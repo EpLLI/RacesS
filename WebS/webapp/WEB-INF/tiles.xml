@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="default" template="/WEB-INF/view/layouts/default.jspx">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/view/common/header.jspx"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value=""/>
+    </definition>
+    <definition name="NewIndex" extends="default">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value="/WEB-INF/view/NewIndex.jsp"/>
+    </definition>
+    <definition name="view/menu" extends="default">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value="/WEB-INF/view/Login.jsp"/>
+    </definition>  
+    <definition name="adminPages/adminMenu" extends="default">
+        <put-attribute name="title" value="Menu"/>
+        <put-attribute name="body" value="/WEB-INF/view/AdminPages/Admin.jsp"/>
+    </definition>
+    <definition name="BucmekPages/BucmekMenu" extends="default">
+        <put-attribute name="title" value="Menu"/>
+        <put-attribute name="body" value="/WEB-INF/view/BucmekPages/Bucmek.jsp"/>
+    </definition>
+    <definition name="adminRacePage" extends="default">
+        <put-attribute name="title" value="Menu"/>
+        <put-attribute name="body" value="/WEB-INF/view/AdminPages/AdminRace.jsp"/>
+    </definition>
+     <definition name="Logout" extends="default">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value="/Index.jsp"/>
+    </definition>
+</tiles-definitions>
