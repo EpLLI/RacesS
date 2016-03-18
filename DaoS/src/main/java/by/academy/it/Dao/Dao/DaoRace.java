@@ -1,21 +1,19 @@
 package by.academy.it.Dao.Dao;
 
-import java.sql.SQLException;
+
 import java.util.List;
-
-import javax.naming.NamingException;
-
+import by.academy.it.DaoException.DaoException;
 import by.academy.it.pojos.Race;
 
 public interface DaoRace extends Dao<Race> {
 
-	boolean updateRace(Race race) throws NamingException;
+	boolean updateRace(Race race) throws DaoException;
 
-	void saveOrUpdate(Race race) throws NamingException, SQLException;
+	void saveOrUpdate(Race race) throws DaoException;
 
-	void save(Race race) throws NamingException, SQLException;
+	void save(Race race) throws DaoException;
 
-	List<Race> get(Integer offset, Integer maxResults);
+	List<Race> get(Integer offset, Integer maxResults) throws DaoException;
 
-	Long count();
+	Long count() throws DaoException;
 }

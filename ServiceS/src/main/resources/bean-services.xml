@@ -13,7 +13,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
 	<import resource="classpath*:beans-dao.xml" />
 
-	<context:component-scan base-package="by.academy.it.service" />
+	<context:component-scan base-package="by.academy.it" />
 	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

@@ -23,6 +23,7 @@ import by.academy.it.pojos.Race;
 import by.academy.it.pojos.Tupebets;
 import by.academy.it.service.IAdminService;
 import by.academy.it.service.IBucmekService;
+import by.academy.it.serviceException.ServiceException;
 
 @Controller
 public class BucmekController {
@@ -46,14 +47,22 @@ public class BucmekController {
 	}
 	private void displayTupebets(ModelMap model) {
 		List<Tupebets> tupe = null;
-		tupe = bucmekService.getAllTupeBets();
+		try {
+			tupe = bucmekService.getAllTupeBets();
+		} catch (ServiceException e) {
+			log.error(e);
+		}
 		model.put("tupebets", tupe);
 
 
 	}
 	private void displayCoefficient(ModelMap model) {
 		List<Coefficient> coef= null;
-		coef = bucmekService.getAllCoefficiet();
+		try {
+			coef = bucmekService.getAllCoefficiet();
+		} catch (ServiceException e) {
+			log.error(e);
+		}
 		model.put("coef", coef);
 
 
@@ -66,9 +75,15 @@ public class BucmekController {
 		if (page != null)
 			pageB = page;
 
-		List<Race> race = adminService.get((pageB - 1) * recordsPerPage, recordsPerPage);
+		List<Race> race ;
+		try {
+			race = adminService.get((pageB - 1) * recordsPerPage, recordsPerPage);
+	
 
-		long noOfRecords = adminService.count();
+		long noOfRecords ;
+		
+			noOfRecords = adminService.count();
+		
 
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
@@ -78,13 +93,16 @@ public class BucmekController {
 		model.put("race", race);
 		displayTupebets(model);
 		displayCoefficient(model);
-		
+		} catch (ServiceException e) {
+
+			log.error(e);
+		}
 		return "BucmekPages/BucmekMenu";
 	}
 	private void displayRace(ModelMap model) {
 		int pageB = 1;
 		int recordsPerPage = 5;
-
+		try {
 		List<Race> race = adminService.get((pageB - 1) * recordsPerPage, recordsPerPage);
 
 		long noOfRecords = adminService.count();
@@ -95,17 +113,25 @@ public class BucmekController {
 		model.addAttribute("currentPage", pageB);
 
 		model.put("race", race);
+		} catch (ServiceException e) {
+
+			log.error(e);
+		}
 
 
 	}
 	@RequestMapping(value = "/UpdateCoefficient", method = RequestMethod.POST)
 	public String UpdateRace(@ModelAttribute("coefficient") Coefficient coef, ModelMap model) {
 		String page = null;
-		
+		try{
 		bucmekService.addCoefficient(coef);; 
 		displayRace(model);
 		displayTupebets(model);
 		displayCoefficient(model);
+	} catch (ServiceException e) {
+
+		log.error(e);
+	}
 		return "BucmekPages/BucmekMenu";
 	}
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -114,7 +140,7 @@ public class BucmekController {
 		if (auth != null){    
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		//return "Logout";
+		
 		return "redirect:/login"		;
 	}
 }

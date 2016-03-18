@@ -1,13 +1,13 @@
 package by.academy.it.Dao.Dao;
 
-import javax.naming.NamingException;
 
+import by.academy.it.DaoException.DaoException;
 import by.academy.it.pojos.User;
 
 public interface UserDao {
 
-	public User getUserById(int id);
+	public User getUserById(int id) throws DaoException;
 
-	User findByUserName(String username);
+	User findByUserName(String username) throws DaoException;
 
 }

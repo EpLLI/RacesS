@@ -1,4 +1,4 @@
-package by.academy.it.service;
+package by.academy.it.serviceImpl;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.academy.it.Dao.Dao.Dao;
-import by.academy.it.Dao.Dao.DaoException;
+import by.academy.it.DaoException.DaoException;
+import by.academy.it.service.Services;
+import by.academy.it.serviceException.ServiceException;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -31,8 +33,8 @@ public class BaseService <T> implements Services<T> {
 		try {
 			t = baseDao.getById(id);
 		} catch (DaoException e) {
-			log.error(e + "Error in BaseService/getById()");
-			throw new ServiceException(e.getMessage());
+			log.error("Error in getById process --- " + e);
+			throw new ServiceException(e);
 		}
 		return t;
 	}
@@ -43,8 +45,8 @@ public class BaseService <T> implements Services<T> {
 			try {
 				baseDao.add(model);
 			} catch (DaoException e) {
-				log.error(e + "Error in BaseService/add()");
-				throw new ServiceException();
+				log.error("Error in add process --- " + e);
+				throw new ServiceException(e);
 			}
 		}
 	}
@@ -55,8 +57,8 @@ public class BaseService <T> implements Services<T> {
 			try {
 				baseDao.update(model);
 			} catch (DaoException e) {
-				log.error(e + "Error in BaseService/update()");
-				throw new ServiceException(e.getMessage());
+				log.error("Error in update process --- " + e);
+				throw new ServiceException(e);
 			}
 		}
 	}
@@ -67,8 +69,8 @@ public class BaseService <T> implements Services<T> {
 			try {
 				baseDao.remove(id);
 			} catch (DaoException e) {
-				log.error(e + "Error in BaseService/remove(id)");
-				throw new ServiceException(e.getMessage());
+				log.error("Error in remove process --- " + e);
+				throw new ServiceException(e);
 			}
 		}
 	}
@@ -79,8 +81,8 @@ public class BaseService <T> implements Services<T> {
 			try {
 				baseDao.remove(model);
 			} catch (DaoException e) {
-				log.error(e + "Error in BaseService/remove(model)");
-				throw new ServiceException(e.getMessage());
+				log.error("Error in remove process --- " + e);
+				throw new ServiceException(e);
 			}
 		}
 

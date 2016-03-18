@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.academy.it.Dao.Dao.Dao;
-import by.academy.it.Dao.Dao.DaoException;
+import by.academy.it.DaoException.DaoException;
+
 
 @Repository()
 public class BaseDao<T> implements Dao<T> {
@@ -35,7 +36,7 @@ public class BaseDao<T> implements Dao<T> {
 			log.info("get clazz:" + t);
 		} catch (HibernateException e) {
 			log.error("Error get " + getPersistentClass() + " in Dao" + e);
-			throw new DaoException();
+			throw new DaoException(e);
 		}
 		return t;
 
@@ -58,7 +59,7 @@ public class BaseDao<T> implements Dao<T> {
 			log.info("Save or update (commit):" + model);
 		} catch (HibernateException e) {
 			log.error("Error save or update" + model + " in Dao" + e);
-			throw new DaoException();
+			throw new DaoException(e);
 		}
 	}
 
@@ -74,7 +75,7 @@ public class BaseDao<T> implements Dao<T> {
 			log.info("Save or update (commit):" + model);
 		} catch (HibernateException e) {
 			log.error("Error save or update" + model + " in Dao" + e);
-			throw new DaoException();
+			throw new DaoException(e);
 		}
 	}
 
@@ -89,7 +90,7 @@ public class BaseDao<T> implements Dao<T> {
 			log.info("Delete:" + id);
 		} catch (HibernateException e) {
 			log.error("Error remove in Dao/remove" + e);
-			throw new DaoException();
+			throw new DaoException(e);
 		}
 
 	}
@@ -104,7 +105,7 @@ public class BaseDao<T> implements Dao<T> {
 			log.info("Delete:" + model);
 		} catch (HibernateException e) {
 			log.error("Error save or update" + model + "in Dao" + e);
-			throw new DaoException();
+			throw new DaoException(e);
 		}
 	}
 

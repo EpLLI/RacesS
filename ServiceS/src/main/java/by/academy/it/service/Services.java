@@ -1,5 +1,7 @@
 package by.academy.it.service;
 
+import by.academy.it.serviceException.ServiceException;
+
 public interface Services<T> {
 	T getById(Long id) throws ServiceException;
 

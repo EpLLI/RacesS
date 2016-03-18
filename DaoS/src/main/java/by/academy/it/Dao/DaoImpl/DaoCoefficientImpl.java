@@ -1,28 +1,16 @@
 package by.academy.it.Dao.DaoImpl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
-import java.sql.SQLException;
-
 import java.util.List;
-
-import javax.naming.NamingException;
-
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import by.academy.it.Dao.Dao.Connect;
 import by.academy.it.Dao.Dao.DaoCoefficient;
-import by.academy.it.Hiberneit.HibernateUtil;
+import by.academy.it.DaoException.DaoException;
 import by.academy.it.pojos.Coefficient;
-import by.academy.it.pojos.Race;
+
 
 @Repository()
 public class DaoCoefficientImpl extends BaseDao<Coefficient>implements DaoCoefficient {
@@ -34,7 +22,7 @@ public class DaoCoefficientImpl extends BaseDao<Coefficient>implements DaoCoeffi
 	private Logger log = Logger.getLogger(DaoCoefficientImpl.class);
 
 	@Override
-	public List<Coefficient> getAllCoefficiet() throws NamingException {
+	public List<Coefficient> getAllCoefficiet()  throws DaoException{
 		List<Coefficient> result = null;
 		try {
 
@@ -43,16 +31,15 @@ public class DaoCoefficientImpl extends BaseDao<Coefficient>implements DaoCoeffi
 			result = query.list();
 		} catch (HibernateException e) {
 
-			log.error("Error  in Dao" + e);
-
+			log.error("Error getAllCieff in Dao" + e);
+			throw new DaoException(e);
 		}
-		// transaction.commit();
 		return result;
 	}
 
 
 	@Override
-	public boolean addCoefficient(Coefficient coefficient) throws NamingException {
+	public boolean addCoefficient(Coefficient coefficient)  throws DaoException{
 		boolean flag = false;
 		try {
 
@@ -64,8 +51,8 @@ public class DaoCoefficientImpl extends BaseDao<Coefficient>implements DaoCoeffi
 			query.executeUpdate();
 			getSession().flush();
 		} catch (HibernateException e) {
-			log.error("Error  in Dao" + e);
-
+			log.error("Error addCoeff  in Dao" + e);
+			throw new DaoException(e);
 		}
 
 		return flag;
